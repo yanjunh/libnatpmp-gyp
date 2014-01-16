@@ -11,14 +11,35 @@
           '<(DEPTH)/third_party/libnatpmp',
         ],
       },
-      'defines': [
-        'ENABLE_STRNATPMPERR',
-      ],
       'sources': [
         'natpmp.c',
         'getgateway.c',
       ],
       'conditions': [
+        ['OS == "win"', {
+          'defines': [
+            'STATICLIB',
+          ],
+          'direct_dependent_settings': {
+            'defines': [
+              'STATICLIB',
+            ],
+            'msvs_settings': {
+              'VCLinkerTool': {
+                'AdditionalDependencies': [
+                  'IpHlpApi.Lib',
+                ],
+              },
+            },
+          },
+          'sources': [
+            'wingettimeofday.c',
+          ],
+        }, {
+          'defines': [
+            'ENABLE_STRNATPMPERR',
+          ],
+        }],
         ['OS == "mac"', {
           'defines': [
             'MACOSX',
