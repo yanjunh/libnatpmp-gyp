@@ -35,7 +35,6 @@ POSSIBILITY OF SUCH DAMAGE.
 #include <sys/time.h>
 #endif
 #ifdef WIN32
-#include <errno.h>
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <io.h>
